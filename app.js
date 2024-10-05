@@ -1,38 +1,24 @@
-// app.js
 const express = require('express');
-const bodyParser = require('body-parser');
-
 const app = express();
-const PORT = 3000;
+const port = 3000;
 
-// Middleware
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(express.json()); // Middleware to parse JSON
 
-// Serve the form
-app.get('/', (req, res) => {
-    res.send(`
-        <form action="/submit" method="POST">
-            <label for="integer">Enter an integer:</label>
-            <input type="number" id="integer" name="integer" required>
-            <button type="submit">Submit</button>
-        </form>
-    `);
+let lastResponse = null; // Variable to hold the last response
+
+// Endpoint to check the integer
+app.post('/check', (req, res) => {
+    const integer = req.body.integer;
+    const status = integer < 100 ? 'low' : 'high';
+    lastResponse = { integer, status };
+    res.json(lastResponse);
 });
 
-// Handle form submission
-app.post('/submit', (req, res) => {
-    const integerValue = req.body.integer;
-
-    let status = 'low';
-    if (integerValue >= 100) {
-        status = 'high';
-    }
-
-    res.json({ integer: integerValue, status: status });
+// Endpoint to get the latest response
+app.get('/latest', (req, res) => {
+    res.json(lastResponse);
 });
 
-// Start the server
-app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+app.listen(port, () => {
+    console.log(`Server is running at http://localhost:${port}`);
 });
