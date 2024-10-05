@@ -9,7 +9,6 @@ This repository contains a simple Node.js application that provides an endpoint 
 
 . ├── .github │ └── workflows # GitHub Actions workflows for CI/CD ├── frontend # Frontend code (if applicable) ├── node_modules # Node.js dependencies ├── Dockerfile # Dockerfile for containerization ├── app.js # Main application code ├── package-lock.json # Dependency lock file └── package.json # Node.js project metadata
 
-markdown
 
 ## **Requirements**
 
@@ -22,8 +21,8 @@ markdown
 ### **Clone the Repository**
 
 ```bash
-git clone https://github.com/hardiksharma999/rsa_group
-cd rsa_group
+git clone https://github.com/hardiksharma999/regression-test-code
+cd regression-test-code
 Install Dependencies
 Run the following command to install the required Node.js dependencies:
 
@@ -67,7 +66,7 @@ GitHub Actions
 This repository is equipped with GitHub Actions for continuous integration. The workflows defined in .github/workflows will automatically:
 
 Run tests on every push.
-Build and push Docker images (if applicable).
+Build and push Docker images.
 Building with Docker
 To build the application using Docker, use the following command:
 
